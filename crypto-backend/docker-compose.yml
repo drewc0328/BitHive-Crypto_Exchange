@@ -1,0 +1,29 @@
+version: "3"
+services:
+  crypto-backend:
+    image: crypto-backend
+    ports:
+      - "5000:5000"
+    networks: [crypto-app]
+    depends_on:
+      - "mongo"
+  web-scraper:
+    image: crypto-web-scraper
+    ports:
+      - "5100:5100"
+    networks: [crypto-app]
+    depends_on:
+      - "mongo"
+  mongo:
+    image: mongo:3.6.19-xenial
+    ports:
+      - "27017:27017"
+    networks: [crypto-app]
+    volumes:
+      - mongo-data:/data/db
+networks:
+  crypto-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local
