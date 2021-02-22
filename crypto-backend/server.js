@@ -34,12 +34,12 @@ server.use((error, req, res, next) => {
 
 (async () => {
   try {
-    await mongoose.connect(process.env.MONGO_CONN_STRING, {
+    await mongoose.connect("mongodb://mongo:27017/crypto", {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
-    server.listen(process.env.PORT, () => {
-      console.log(`Server connected on port ${process.env.PORT}`);
+    server.listen(5000, () => {
+      console.log(`Server connected on port 5000`);
     });
   } catch (err) {
     console.log("error: " + err);
