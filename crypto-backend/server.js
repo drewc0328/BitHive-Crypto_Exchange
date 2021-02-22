@@ -34,13 +34,10 @@ server.use((error, req, res, next) => {
 
 (async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://Drew:bellabella444@cluster0.j0suz.mongodb.net/crypto-database?retryWrites=true&w=majority",
-      {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-      }
-    );
+    await mongoose.connect("mongodb://mongo:27017/crypto", {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    });
     server.listen(5000, () => {
       console.log(`Server connected on port 5000`);
     });

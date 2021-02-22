@@ -3,7 +3,7 @@ import time
 import pymongo
 from bs4 import BeautifulSoup as soup
 
-client = pymongo.MongoClient("mongodb+srv://Drew:bellabella444@cluster0.j0suz.mongodb.net/crypto-database?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb://mongo:27017/crypto")
 db = client['crypto-database']
 cryptos = db['cryptos']
 
@@ -69,7 +69,6 @@ while True:
 
             if doc == None:
                 cryptos.insert_one(crypto1)
-
         
     for container in containers2:
         name = container.td.a["title"]
