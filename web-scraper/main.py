@@ -4,7 +4,8 @@ import pymongo
 from bs4 import BeautifulSoup as soup
 
 client = pymongo.MongoClient("mongodb://mongo:27017/crypto")
-db = client['crypto-database']
+print("client: ", client)
+db = client['crypto']
 cryptos = db['cryptos']
 
 my_url = "https://finance.yahoo.com/cryptocurrencies?offset=0&count=60"
@@ -53,22 +54,22 @@ while True:
             'logo': logo
         }
 
-        if abbr and name:
-            doc = cryptos.find_one_and_update(
-                {"abbr": crypto1["abbr"]},
-                {"$set":
-                     {"name": crypto1["name"],
-                      "price": crypto1["price"],
-                      "change": crypto1["change"],
-                      "change_percent": crypto1["change_percent"],
-                      "market_cap": crypto1["market_cap"],
-                      "logo": crypto1["logo"]
-                      }
-                 }, upsert=True
-            )
+        # if abbr and name:
+        #     doc = cryptos.find_one_and_update(
+        #         {"abbr": crypto1["abbr"]},
+        #         {"$set":
+        #              {"name": crypto1["name"],
+        #               "price": crypto1["price"],
+        #               "change": crypto1["change"],
+        #               "change_percent": crypto1["change_percent"],
+        #               "market_cap": crypto1["market_cap"],
+        #               "logo": crypto1["logo"]
+        #               }
+        #          }, upsert=True
+        #     )
 
-            if doc == None:
-                cryptos.insert_one(crypto1)
+            # if doc == None:
+        cryptos.insert_one(crypto1)
         
     for container in containers2:
         name = container.td.a["title"]
@@ -98,21 +99,21 @@ while True:
             'logo': logo
         }
 
-        if abbr and name:
-            doc = cryptos.find_one_and_update(
-                {"abbr": crypto2["abbr"]},
-                {"$set":
-                     {"name": crypto2["name"],
-                      "price": crypto2["price"],
-                      "change": crypto2["change"],
-                      "change_percent": crypto2["change_percent"],
-                      "market_cap": crypto2["market_cap"],
-                      "logo": crypto2["logo"]
-                      }
-                 }, upsert=True
-            )
+        # if abbr and name:
+        #     doc = cryptos.find_one_and_update(
+        #         {"abbr": crypto2["abbr"]},
+        #         {"$set":
+        #              {"name": crypto2["name"],
+        #               "price": crypto2["price"],
+        #               "change": crypto2["change"],
+        #               "change_percent": crypto2["change_percent"],
+        #               "market_cap": crypto2["market_cap"],
+        #               "logo": crypto2["logo"]
+        #               }
+        #          }, upsert=True
+        #     )
 
-            if doc == None:
-                cryptos.insert_one(crypto2)
+        #     if doc == None:
+        cryptos.insert_one(crypto2)
 
     time.sleep(60.0 - ((time.time() - starttime) % 60.0))
