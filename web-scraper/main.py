@@ -54,22 +54,19 @@ while True:
             'logo': logo
         }
 
-        # if abbr and name:
-        #     doc = cryptos.find_one_and_update(
-        #         {"abbr": crypto1["abbr"]},
-        #         {"$set":
-        #              {"name": crypto1["name"],
-        #               "price": crypto1["price"],
-        #               "change": crypto1["change"],
-        #               "change_percent": crypto1["change_percent"],
-        #               "market_cap": crypto1["market_cap"],
-        #               "logo": crypto1["logo"]
-        #               }
-        #          }, upsert=True
-        #     )
-
-            # if doc == None:
-        cryptos.insert_one(crypto1)
+        if abbr and name:
+            doc = cryptos.find_one_and_update(
+                {"abbr": crypto1["abbr"]},
+                {"$set":
+                     {"name": crypto1["name"],
+                      "price": crypto1["price"],
+                      "change": crypto1["change"],
+                      "change_percent": crypto1["change_percent"],
+                      "market_cap": crypto1["market_cap"],
+                      "logo": crypto1["logo"]
+                      }
+                 }, upsert=True
+            )
         
     for container in containers2:
         name = container.td.a["title"]
@@ -99,21 +96,18 @@ while True:
             'logo': logo
         }
 
-        # if abbr and name:
-        #     doc = cryptos.find_one_and_update(
-        #         {"abbr": crypto2["abbr"]},
-        #         {"$set":
-        #              {"name": crypto2["name"],
-        #               "price": crypto2["price"],
-        #               "change": crypto2["change"],
-        #               "change_percent": crypto2["change_percent"],
-        #               "market_cap": crypto2["market_cap"],
-        #               "logo": crypto2["logo"]
-        #               }
-        #          }, upsert=True
-        #     )
-
-        #     if doc == None:
-        cryptos.insert_one(crypto2)
+        if abbr and name:
+            doc = cryptos.find_one_and_update(
+                {"abbr": crypto2["abbr"]},
+                {"$set":
+                     {"name": crypto2["name"],
+                      "price": crypto2["price"],
+                      "change": crypto2["change"],
+                      "change_percent": crypto2["change_percent"],
+                      "market_cap": crypto2["market_cap"],
+                      "logo": crypto2["logo"]
+                      }
+                 }, upsert=True
+            )
 
     time.sleep(60.0 - ((time.time() - starttime) % 60.0))
