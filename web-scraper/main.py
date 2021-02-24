@@ -3,7 +3,7 @@ import time
 import pymongo
 from bs4 import BeautifulSoup as soup
 
-client = pymongo.MongoClient("mongodb+srv://Drew:bellabella444@cluster0.j0suz.mongodb.net/crypto-database?retryWrites=true&w=majority")
+client = pymongo.MongoClient(MONGO_URI)
 print("client: ", client)
 db = client['crypto-database']
 cryptos = db['cryptos']
